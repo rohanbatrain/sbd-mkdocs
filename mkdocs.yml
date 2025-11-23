@@ -1,0 +1,102 @@
+site_name: Second Brain Database
+site_description: Enterprise-grade knowledge management system documentation.
+site_url: https://docs.secondbrain.ai
+repo_url: https://github.com/rohanbatrain/second_brain_database
+repo_name: second_brain_database
+
+theme:
+  name: material
+  custom_dir: overrides
+  language: en
+  palette:
+    - scheme: default
+      primary: indigo
+      accent: indigo
+      toggle:
+        icon: material/brightness-7
+        name: Switch to dark mode
+    - scheme: slate
+      primary: indigo
+      accent: indigo
+      toggle:
+        icon: material/brightness-4
+        name: Switch to light mode
+  features:
+    - navigation.tabs
+    - navigation.tabs.sticky
+    - navigation.sections
+    - navigation.expand
+    - navigation.top
+    - navigation.tracking
+    - search.suggest
+    - search.highlight
+    - search.share
+    - content.code.copy
+    - content.code.annotate
+    - content.tabs.link
+    - content.tooltips
+  icon:
+    repo: fontawesome/brands/github
+
+plugins:
+  - search
+  - minify:
+      minify_html: true
+  - mkdocstrings:
+      handlers:
+        python:
+          paths: [../../src]
+          options:
+            docstring_style: google
+            show_source: true
+            show_root_heading: true
+            show_category_heading: true
+  - git-revision-date-localized:
+      enable_creation_date: true
+  - awesome-pages
+
+markdown_extensions:
+  - admonition
+  - pymdownx.details
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format
+  - pymdownx.highlight:
+      anchor_linenums: true
+      line_spans: __span
+      pygments_lang_class: true
+  - pymdownx.inlinehilite
+  - pymdownx.snippets
+  - pymdownx.tabbed:
+      alternate_style: true
+  - pymdownx.tasklist:
+      custom_checkbox: true
+  - attr_list
+  - md_in_html
+  - tables
+  - footnotes
+
+nav:
+  - Home: index.md
+  - User Guide:
+    - Introduction: users/index.md
+    - Getting Started: users/getting-started.md
+    - Features: users/features.md
+  - Developer Guide:
+    - Introduction: developers/index.md
+    - Architecture: developers/architecture.md
+    - API Reference:
+        - Authentication: developers/api/auth.md
+        - Users: developers/api/users.md
+        - Knowledge Base: developers/api/knowledge.md
+    - Contributing: developers/contributing.md
+  - Advanced Guide:
+    - Introduction: advanced/index.md
+    - Deployment:
+        - Docker: advanced/deployment/docker.md
+        - Kubernetes: advanced/deployment/kubernetes.md
+        - Bare Metal: advanced/deployment/bare-metal.md
+    - Configuration: advanced/configuration.md
+    - Troubleshooting: advanced/troubleshooting.md
