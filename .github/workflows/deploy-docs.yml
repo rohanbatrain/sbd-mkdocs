@@ -1,0 +1,46 @@
+name: Deploy Documentation
+
+on:
+  push:
+    branches:
+      - master
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Parent Repository
+        uses: actions/checkout@v4
+        with:
+          repository: rohanbatrain/second_brain_database
+          path: .
+          fetch-depth: 1
+
+      - name: Checkout sbd-mkdocs (Self)
+        uses: actions/checkout@v4
+        with:
+          path: submodules/sbd-mkdocs
+          fetch-depth: 0
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install dependencies
+        run: |
+          pip install -r submodules/sbd-mkdocs/requirements.txt
+
+      - name: Configure Git User
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+
+      - name: Build and Deploy
+        run: |
+          cd submodules/sbd-mkdocs
+          mkdocs gh-deploy --force
