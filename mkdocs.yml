@@ -6,7 +6,6 @@ repo_name: second_brain_database
 
 theme:
   name: material
-  custom_dir: overrides
   language: en
   palette:
     - scheme: default
