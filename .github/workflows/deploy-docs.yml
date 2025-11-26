@@ -13,17 +13,9 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout Parent Repository
+      - name: Checkout Repository
         uses: actions/checkout@v4
         with:
-          repository: rohanbatrain/second_brain_database
-          path: .
-          fetch-depth: 1
-
-      - name: Checkout sbd-mkdocs (Self)
-        uses: actions/checkout@v4
-        with:
-          path: submodules/sbd-mkdocs
           fetch-depth: 0
 
       - name: Set up Python
@@ -33,7 +25,7 @@ jobs:
 
       - name: Install dependencies
         run: |
-          pip install -r submodules/sbd-mkdocs/requirements.txt
+          pip install -r requirements.txt
 
       - name: Configure Git User
         run: |
@@ -42,5 +34,4 @@ jobs:
 
       - name: Build and Deploy
         run: |
-          cd submodules/sbd-mkdocs
           mkdocs gh-deploy --force
