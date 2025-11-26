@@ -1,25 +1,12 @@
-site_name: Second Brain Database
-site_description: Enterprise-grade knowledge management system documentation.
-site_url: https://docs.secondbrain.ai
+site_name: Second Brain Database Docs
+site_url: https://rohanbatrain.github.io/second_brain_database/
 repo_url: https://github.com/rohanbatrain/second_brain_database
-repo_name: second_brain_database
+repo_name: rohanbatrain/second_brain_database
 
 theme:
   name: material
+  custom_dir: overrides
   language: en
-  palette:
-    - scheme: default
-      primary: indigo
-      accent: indigo
-      toggle:
-        icon: material/brightness-7
-        name: Switch to dark mode
-    - scheme: slate
-      primary: indigo
-      accent: indigo
-      toggle:
-        icon: material/brightness-4
-        name: Switch to light mode
   features:
     - navigation.tabs
     - navigation.tabs.sticky
@@ -27,74 +14,254 @@ theme:
     - navigation.expand
     - navigation.top
     - navigation.tracking
+    - toc.follow
     - search.suggest
     - search.highlight
     - search.share
     - content.code.copy
-    - content.code.annotate
-    - content.tabs.link
-    - content.tooltips
+    - content.action.edit
+    - content.action.view
+  palette:
+    - scheme: default
+      primary: teal
+      accent: purple
+      toggle:
+        icon: material/brightness-7
+        name: Switch to dark mode
+    - scheme: slate
+      primary: teal
+      accent: lime
+      toggle:
+        icon: material/brightness-4
+        name: Switch to light mode
+  font:
+    text: Roboto
+    code: Roboto Mono
+  favicon: assets/favicon.png
+  logo: assets/logo.png
   icon:
     repo: fontawesome/brands/github
+
+repo_url: https://github.com/rohanbatrain/second_brain_database
+repo_name: rohanbatrain/second_brain_database
+edit_uri: edit/main/submodules/sbd-mkdocs/docs/
+
+copyright: Copyright &copy; 2024 Second Brain Database
+
+extra:
+  social:
+    - icon: fontawesome/brands/github
+      link: https://github.com/rohanbatrain
+    - icon: fontawesome/brands/twitter
+      link: https://twitter.com/rohanbatrain
+    - icon: fontawesome/brands/linkedin
+      link: https://linkedin.com/in/rohanbatrain
+  generator: false
 
 plugins:
   - search
   - minify:
       minify_html: true
-  - mkdocstrings:
-      handlers:
-        python:
-          options:
-            docstring_style: google
-            show_source: true
-            show_root_heading: true
-            show_category_heading: true
   - git-revision-date-localized:
       enable_creation_date: true
-  - awesome-pages
+  - tags
+  - social
 
 markdown_extensions:
   - admonition
+  - abbr
+  - attr_list
+  - def_list
+  - footnotes
+  - meta
+  - md_in_html
+  - toc:
+      permalink: true
+  - pymdownx.arithmatex:
+      generic: true
+  - pymdownx.betterem:
+      smart_enable: all
+  - pymdownx.caret
   - pymdownx.details
-  - pymdownx.superfences:
-      custom_fences:
-        - name: mermaid
-          class: mermaid
-          format: !!python/name:pymdownx.superfences.fence_code_format
+  - pymdownx.emoji:
+      emoji_index: !!python/name:material.extensions.emoji.twemoji
+      emoji_generator: !!python/name:material.extensions.emoji.to_svg
   - pymdownx.highlight:
       anchor_linenums: true
       line_spans: __span
       pygments_lang_class: true
   - pymdownx.inlinehilite
+  - pymdownx.keys
+  - pymdownx.mark
+  - pymdownx.smartsymbols
   - pymdownx.snippets
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format
   - pymdownx.tabbed:
       alternate_style: true
   - pymdownx.tasklist:
       custom_checkbox: true
-  - attr_list
-  - md_in_html
-  - tables
-  - footnotes
+  - pymdownx.tilde
+
+extra_css:
+  - stylesheets/extra.css
+
+extra_javascript:
+  - javascripts/mathjax.js
+  - https://polyfill.io/v3/polyfill.min.js?features=es6
+  - https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js
 
 nav:
   - Home: index.md
-  - User Guide:
-    - Introduction: users/index.md
-    - Getting Started: users/getting-started.md
-    - Features: users/features.md
-  - Developer Guide:
-    - Introduction: developers/index.md
-    - Architecture: developers/architecture.md
-    - API Reference:
-        - Authentication: developers/api/auth.md
-        - Users: developers/api/users.md
-        - Knowledge Base: developers/api/knowledge.md
-    - Contributing: developers/contributing.md
-  - Advanced Guide:
-    - Introduction: advanced/index.md
-    - Deployment:
-        - Docker: advanced/deployment/docker.md
-        - Kubernetes: advanced/deployment/kubernetes.md
-        - Bare Metal: advanced/deployment/bare-metal.md
-    - Configuration: advanced/configuration.md
-    - Troubleshooting: advanced/troubleshooting.md
+  - Backend:
+    - Overview: backend/index.md
+    - Users:
+        - Guide: backend/users/index.md
+        - Getting Started: backend/users/getting-started.md
+    - Developers:
+        - Guide: backend/developers/index.md
+        - Setup: backend/developers/setup.md
+        - Architecture: backend/developers/architecture.md
+        - API Reference: backend/api/index.md
+    - Maintainers:
+        - Guide: backend/maintainers/index.md
+        - Deployment: backend/maintainers/deployment.md
+  - Micro Frontends:
+    - Overview: micro-frontends/index.md
+    - Blog Platform:
+        - Overview: micro-frontends/blog-platform/index.md
+        - Users:
+            - Guide: micro-frontends/blog-platform/users/index.md
+            - Getting Started: micro-frontends/blog-platform/users/getting-started.md
+        - Developers:
+            - Guide: micro-frontends/blog-platform/developers/index.md
+            - Setup: micro-frontends/blog-platform/developers/setup.md
+            - Architecture: micro-frontends/blog-platform/developers/architecture.md
+        - Maintainers:
+            - Guide: micro-frontends/blog-platform/maintainers/index.md
+            - Deployment: micro-frontends/blog-platform/maintainers/deployment.md
+    - Chat:
+        - Overview: micro-frontends/chat/index.md
+        - Users:
+            - Guide: micro-frontends/chat/users/index.md
+            - Getting Started: micro-frontends/chat/users/getting-started.md
+        - Developers:
+            - Guide: micro-frontends/chat/developers/index.md
+            - Setup: micro-frontends/chat/developers/setup.md
+            - Architecture: micro-frontends/chat/developers/architecture.md
+        - Maintainers:
+            - Guide: micro-frontends/chat/maintainers/index.md
+            - Deployment: micro-frontends/chat/maintainers/deployment.md
+    - Digital Shop:
+        - Overview: micro-frontends/digital-shop/index.md
+        - Users:
+            - Guide: micro-frontends/digital-shop/users/index.md
+            - Getting Started: micro-frontends/digital-shop/users/getting-started.md
+        - Developers:
+            - Guide: micro-frontends/digital-shop/developers/index.md
+            - Setup: micro-frontends/digital-shop/developers/setup.md
+            - Architecture: micro-frontends/digital-shop/developers/architecture.md
+        - Maintainers:
+            - Guide: micro-frontends/digital-shop/maintainers/index.md
+            - Deployment: micro-frontends/digital-shop/maintainers/deployment.md
+    - Family Hub:
+        - Overview: micro-frontends/family-hub/index.md
+        - Users:
+            - Guide: micro-frontends/family-hub/users/index.md
+            - Getting Started: micro-frontends/family-hub/users/getting-started.md
+        - Developers:
+            - Guide: micro-frontends/family-hub/developers/index.md
+            - Setup: micro-frontends/family-hub/developers/setup.md
+            - Architecture: micro-frontends/family-hub/developers/architecture.md
+        - Maintainers:
+            - Guide: micro-frontends/family-hub/maintainers/index.md
+            - Deployment: micro-frontends/family-hub/maintainers/deployment.md
+    - IPAM:
+        - Overview: micro-frontends/ipam/index.md
+        - Users:
+            - Guide: micro-frontends/ipam/users/index.md
+            - Getting Started: micro-frontends/ipam/users/getting-started.md
+        - Developers:
+            - Guide: micro-frontends/ipam/developers/index.md
+            - Setup: micro-frontends/ipam/developers/setup.md
+            - Architecture: micro-frontends/ipam/developers/architecture.md
+        - Maintainers:
+            - Guide: micro-frontends/ipam/maintainers/index.md
+            - Deployment: micro-frontends/ipam/maintainers/deployment.md
+    - Landing Page:
+        - Overview: micro-frontends/landing-page/index.md
+        - Users:
+            - Guide: micro-frontends/landing-page/users/index.md
+            - Getting Started: micro-frontends/landing-page/users/getting-started.md
+        - Developers:
+            - Guide: micro-frontends/landing-page/developers/index.md
+            - Setup: micro-frontends/landing-page/developers/setup.md
+            - Architecture: micro-frontends/landing-page/developers/architecture.md
+        - Maintainers:
+            - Guide: micro-frontends/landing-page/maintainers/index.md
+            - Deployment: micro-frontends/landing-page/maintainers/deployment.md
+    - MemEx:
+        - Overview: micro-frontends/memex/index.md
+        - Users:
+            - Guide: micro-frontends/memex/users/index.md
+            - Getting Started: micro-frontends/memex/users/getting-started.md
+        - Developers:
+            - Guide: micro-frontends/memex/developers/index.md
+            - Setup: micro-frontends/memex/developers/setup.md
+            - Architecture: micro-frontends/memex/developers/architecture.md
+        - Maintainers:
+            - Guide: micro-frontends/memex/maintainers/index.md
+            - Deployment: micro-frontends/memex/maintainers/deployment.md
+    - MyAccount:
+        - Overview: micro-frontends/myaccount/index.md
+        - Users:
+            - Guide: micro-frontends/myaccount/users/index.md
+            - Getting Started: micro-frontends/myaccount/users/getting-started.md
+        - Developers:
+            - Guide: micro-frontends/myaccount/developers/index.md
+            - Setup: micro-frontends/myaccount/developers/setup.md
+            - Architecture: micro-frontends/myaccount/developers/architecture.md
+        - Maintainers:
+            - Guide: micro-frontends/myaccount/maintainers/index.md
+            - Deployment: micro-frontends/myaccount/maintainers/deployment.md
+    - Raunak AI:
+        - Overview: micro-frontends/raunak-ai/index.md
+        - Users:
+            - Guide: micro-frontends/raunak-ai/users/index.md
+            - Getting Started: micro-frontends/raunak-ai/users/getting-started.md
+        - Developers:
+            - Guide: micro-frontends/raunak-ai/developers/index.md
+            - Setup: micro-frontends/raunak-ai/developers/setup.md
+            - Architecture: micro-frontends/raunak-ai/developers/architecture.md
+        - Maintainers:
+            - Guide: micro-frontends/raunak-ai/maintainers/index.md
+            - Deployment: micro-frontends/raunak-ai/maintainers/deployment.md
+    - University Clubs:
+        - Overview: micro-frontends/university-clubs-platform/index.md
+        - Users:
+            - Guide: micro-frontends/university-clubs-platform/users/index.md
+            - Getting Started: micro-frontends/university-clubs-platform/users/getting-started.md
+        - Developers:
+            - Guide: micro-frontends/university-clubs-platform/developers/index.md
+            - Setup: micro-frontends/university-clubs-platform/developers/setup.md
+            - Architecture: micro-frontends/university-clubs-platform/developers/architecture.md
+        - Maintainers:
+            - Guide: micro-frontends/university-clubs-platform/maintainers/index.md
+            - Deployment: micro-frontends/university-clubs-platform/maintainers/deployment.md
+  - Integrations:
+    - Overview: integrations/index.md
+    - n8n:
+        - Overview: integrations/n8n/index.md
+        - Users:
+            - Guide: integrations/n8n/users/index.md
+            - Getting Started: integrations/n8n/users/getting-started.md
+        - Developers:
+            - Guide: integrations/n8n/developers/index.md
+            - Setup: integrations/n8n/developers/setup.md
+            - Architecture: integrations/n8n/developers/architecture.md
+        - Maintainers:
+            - Guide: integrations/n8n/maintainers/index.md
+            - Deployment: integrations/n8n/maintainers/deployment.md
